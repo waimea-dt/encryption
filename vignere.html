@@ -1,0 +1,83 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Vignère Cypher</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/fontello.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body onload="setup( VIGNERE );">
+
+    <header id="mainheader">
+        <h1>The Vignère Cypher</h1>
+
+        <section id="inputs">
+            <h2>Inputs and Outputs</h2>
+
+            <div id="plaintext" class="group">
+                <h3>Plain Text</h3>
+                <input type="text" id="plaintext-text">
+            </div>
+
+            <div id="options" class="group">
+                <h3 class="key">Key Phrase</h3>
+                <input type="text" id="key-text">
+            </div>
+
+            <div id="options" class="group">
+                <h3 class="key">Key Stream</h3>
+                <input type="text" id="key-stream" disabled>
+            </div>
+
+            <div id="cyphertext" class="group">
+                <h3 class="cypher">Cypher Text</h3>
+                <input type="text" id="cyphertext-text">
+            </div>
+        </section>
+
+        <section id="inputs">
+            <h2>Frequency Analysis</h2>
+
+            <div id="plaintext-freq" class="group">
+                <h3>Plain Text</h3>
+                <div id="plaintext-chart" class="chart"></div>
+            </div>
+
+            <div id="cyphertext-freq" class="group">
+                <h3 class="cypher">Cypher Text</h3>
+                <div id="cyphertext-chart" class="chart"></div>
+            </div>
+        </section>
+    </header>
+
+    <main>
+        <section id="encryption">
+            <h2>Encryption System</h2>
+
+            <div id="crypt-plaintext" class="group block">
+                <h3>Plain Letter</h3>
+                <div id="plaintext-chars" class="grid"></div>
+            </div>
+
+            <div id="crypt-mapping" class="group block">
+                <h3 id="mapping-direction">Encrypts To</h3>
+                <div id="mapping" class="grid"></div>
+            </div>
+
+            <div id="crypt-cyphertext" class="group block">
+                <h3><span class="key">Key Stream Letter</span> <i class="icon-down"></i> <span class="cypher">Cyphertext Alphabet</span></h3>
+                <div id="cyphertext-chars"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/crypt.js"></script>
+
+</body>
+
+</html>
