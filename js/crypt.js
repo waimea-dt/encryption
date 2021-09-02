@@ -213,7 +213,7 @@ function updateCharts() {
 
 function updateChart( input, bars ) {
     const text = input.value.toUpperCase();
-    const maxHeight = 5; // 5rem
+    const maxHeight = 3.5; // 3.5rem
     let counts = Array( 26 ).fill( 0 );
     let maxCount = 0;
     // console.log( `Text: ${plainText}` );

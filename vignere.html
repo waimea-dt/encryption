@@ -14,7 +14,9 @@
 <body onload="setup( VIGNERE );">
 
     <header id="mainheader">
-        <h1>The Vignère Cypher</h1>
+        <h1>The Vignère Cypher <a target="_blank" href="https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher"><i class="icon-link-ext"></i></a></h1>
+        <p class="sub-heading">An Early <em>Polyalphabetic Substitution Cyper</em> named after Blaise de Vignère, although first described by Giovan Battista Bellaso in 1553.</p>
+        <p class="sub-heading">It uses a Key Stream (a repeated key phrase) to select <em>a different alphabet shift per letter</em> during encryption, making it hard to break.</p>
 
         <section id="inputs">
             <h2>Inputs and Outputs</h2>
@@ -53,6 +55,8 @@
                 <div id="cyphertext-chart" class="chart"></div>
             </div>
         </section>
+
+        <p class="instruction">Instructions: Enter a Key Phrase and type into either the Plain Text or Cypher Text boxes to see the encryption in action.</p>
     </header>
 
     <main>

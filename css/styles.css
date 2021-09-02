@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech&family=Share+Tech+Mono&display=swap');
 
 /*** THEME ********************************************************/
 
@@ -18,7 +18,7 @@
     --char-text: #000;
     --char-back: #fff;
     --char-high: #FFEB3B;
-    --char-first: #546E7A80;
+    --char-first: #455A64c0;
 
     --cypher-back: #FFAB91;
     --key-back: #A5D6A7;
@@ -35,7 +35,7 @@ html {
     color: var(--text);
     background: var(--back);
     font-family: 'Share Tech Mono', monospace;
-    font-size: 20px;
+    font-size: 14px;
 }
 
 
@@ -43,21 +43,50 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.5rem;
+    gap: 1rem;
     max-width: 50rem;
     margin: 0 auto;
     padding: 1rem;
 }
 
-/*** HEADINGS ********************************************************/
+/*** HEADINGS and TEXT ********************************************************/
 
 h1 {
     font-size: 2em;
 }
 
+h1 i {
+    font-size: 0.6em;
+}
+
+h1 a { color: var(--accent); }
+h1 a:active, h1 a:hover { color: var(--text); }
+
+.sub-heading,
+.instruction {
+    font-family: 'Share Tech', sans-serif;
+    font-size: 1rem;
+    color: var(--text-low);
+}
+
+.sub-heading:hover,
+.sub-heading:active,
+.instruction:hover,
+.instruction:active {
+    color: var(--text);
+}
+
+.sub-heading em {
+    color: var(--accent);
+}
+
 h2 {
     font-size: 1.5rem;
     color: var(--accent);
+}
+
+h3 {
+    font-family: 'Share Tech', sans-serif;
 }
 
 #crypt-cyphertext h3 {
@@ -73,6 +102,11 @@ h2 {
 .key    { color: var(--key-back); }
 .cypher { color: var(--cypher-back); }
 
+.instruction {
+    font-size: 0.9rem;
+}
+
+
 /*** MAIN ********************************************************/
 
 main {
@@ -81,7 +115,7 @@ main {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 /*** HEADER ********************************************************/
@@ -90,7 +124,7 @@ header {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 1rem;
     justify-content: space-between;
     align-items: center;
 }
@@ -263,7 +297,7 @@ input[type="number"] {
 /*** CHARTS ********************************************************/
 
 .chart {
-    height: 7rem;
+    height: 5.5rem;
     flex: 1;
     padding: 0.5rem;
     border-radius: 0.3rem;
@@ -276,7 +310,7 @@ input[type="number"] {
 
 .chart > div {
     display: flex;
-    gap: 2px;
+    gap: 3px;
     align-items: flex-end;
 }
 
@@ -317,6 +351,13 @@ input[type="number"] {
 
 /*** RESPONSIVE ********************************************************/
 
+@media screen and (min-width: 35rem) {
+    html {
+        font-size: 20px;
+    }
+}
+
+
 @media screen and (min-width: 50rem) {
     section .group {
         flex-direction: row;
@@ -324,7 +365,7 @@ input[type="number"] {
     }
 
     section .group h3 {
-        width: 7rem;
+        width: 5.5rem;
         text-align: right;
     }
 
@@ -344,11 +385,11 @@ input[type="number"] {
         /* width: 100%; */
         margin: 0 2rem;
         flex-direction: row;
-        gap: 2rem;
+        gap: 1rem;
         align-items: flex-start;
     }
 
     #encryption {
-        min-width: 45rem;
+        min-width: 40rem;
     }
 }

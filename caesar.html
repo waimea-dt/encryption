@@ -14,7 +14,9 @@
 <body onload="setup( CAESAR );">
 
     <header id="mainheader">
-        <h1>The Caesar Cypher</h1>
+        <h1>The Caesar Cypher <a target="_blank" href="https://en.wikipedia.org/wiki/Caesar_cipher"><i class="icon-link-ext"></i></a></h1>
+        <p class="sub-heading">A Simple <em>Single-Alphabet Substitution Cypher</em>, attributed to Julius Caesar.</p>
+        <p class="sub-heading">It shifts or 'rotates' the alphabet, and so is sometimes called a Rotation Cypher (e.g. ROT-13 for a shift of 13). It is highly susceptable to letter frequency analysis and thus easily broken.</p>
 
         <section id="inputs">
             <h2>Inputs and Outputs</h2>
@@ -34,6 +36,8 @@
                 <input type="text" id="cyphertext-text">
             </div>
         </section>
+
+        <p class="instruction">Instructions: Select a Key (Shift) value and type into either the Plain Text or Cypher Text boxes to see the encryption in action.</p>
     </header>
 
     <main>
