@@ -1,0 +1,141 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Symmetric Key Cryptography</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/fontello.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/tweetnacl-util@0.15.0/nacl-util.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl.js"></script>
+</head>
+
+<body onload="setup( SYMMETRIC );">
+
+    <header id="mainheader">
+        <h1>Symmetric Key Cryptography <a target="_blank" href="https://en.wikipedia.org/wiki/Symmetric-key_algorithm"><i class="icon-link-ext"></i></a></h1>
+        <p class="sub-heading">A 'Symmetric' encryption scheme is one where the same secret key is used for both encryption and decryption.</p>
+        <p class="sub-heading">The need to share a key is the main weakness with this type of scheme, since the key can be intercepted by an eavesdropper. This is called the <em>'Key Distribution Problem'</em>.</p>
+        <p class="sub-heading">Modern symmetric encryption schemes use long, random keys and complex maths for the encryption. If the key is kept secure, they can be very hard to break.</p>
+    </header>
+
+    <main>
+        <section id="user-A" class="user">
+            <h2>Sender (Alice)</h2>
+
+            <div class="group">
+                <h3 class="key">Shared Key</h3>
+                <textarea id="key-A" class="key-value" placeholder=" " disabled></textarea>
+
+                <div class="actions">
+                    <button id="key-gen-A">Generate</button>
+                    <button id="key-send-AtoB">Send</button>
+                </div>
+            </div>
+
+            <div class="group">
+                <h3>Plaintext for Bob</h3>
+                <textarea id="plaintext-text-A" class="plaintext-text"></textarea>
+
+                <div class="actions">
+                    <button id="plaintext-encrypt">Encrypt</button>
+                </div>
+            </div>
+
+            <div class="group">
+                <h3 class="cypher">Cyphertext for Bob</h3>
+                <textarea id="cyphertext-text-A" class="cyphertext-text" placeholder=" " disabled></textarea>
+
+                <div class="actions">
+                    <button id="cyphertext-send">Send</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="charts">
+            <h2>Frequency Analysis</h2>
+
+            <div id="plaintext-freq" class="group">
+                <h3>Plaintext Symbol Frequency</h3>
+                <div id="plaintext-chart" class="chart"></div>
+            </div>
+
+            <div id="cyphertext-freq" class="group">
+                <h3 class="cypher">Cyphertext Symbol Frequency</h3>
+                <div id="cyphertext-chart" class="chart"></div>
+            </div>
+        </section>
+
+        <section id="transmission">
+            <div id="transmit-atob">
+                <i class="icon-right"></i>
+                <i class="icon-down"></i>
+            </div>
+            <div id="transmit-btoa">
+                <i class="icon-left"></i>
+                <i class="icon-up"></i>
+            </div>
+        </section>
+
+        <section id="user-B" class="user">
+            <h2>Recipient (Bob)</h2>
+
+            <div class="group">
+                <h3 class="key">Shared Key</h3>
+                <textarea id="key-B" class="key-value" placeholder=" " disabled></textarea>
+
+                <div class="actions">
+                    <button id="key-gen-B">Generate</button>
+                    <button id="key-send-BtoA">Send</button>
+                </div>
+            </div>
+
+            <div class="group">
+                <h3 class="cypher">Cyphertext from Alice</h3>
+                <textarea id="cyphertext-text-B" class="cyphertext-text" placeholder=" " disabled></textarea>
+
+                <div class="actions">
+                    <button id="cyphertext-decrypt-B">Decrypt</button>
+                </div>
+            </div>
+
+            <div class="group">
+                <h3>Plaintext from Alice</h3>
+                <textarea id="plaintext-text-B" class="plaintext-text" placeholder=" " disabled></textarea>
+            </div>
+        </section>
+
+        <section id="user-E" class="user">
+            <h2>Eavesdropper (Eve)</h2>
+
+            <div class="group">
+                <h3 class="key">Stolen Key</h3>
+                <textarea id="key-E" class="key-value" placeholder=" " disabled></textarea>
+            </div>
+
+            <div class="group">
+                <h3 class="cypher">Cyphertext from Alice</h3>
+                <textarea id="cyphertext-text-E" class="cyphertext-text" placeholder=" " disabled></textarea>
+
+                <div class="actions">
+                    <button id="cyphertext-decrypt-E">Decrypt</button>
+                </div>
+            </div>
+
+            <div class="group">
+                <h3>Plaintext from Alice</h3>
+                <textarea id="plaintext-text-E" class="plaintext-text" placeholder=" " disabled></textarea>
+            </div>
+        </section>
+
+        <script src="js/crypt-util.js"></script>
+        <script src="js/crypt-modern.js"></script>
+    </main>
+
+</body>
+
+</html>

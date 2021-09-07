@@ -5,18 +5,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>The Caesar Cypher</title>
+    <title>The Pigpen Cypher</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/fontello.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body onload="setup( CAESAR );">
+<body onload="setup( PIGPEN );">
 
     <header id="mainheader">
-        <h1>The Caesar Cypher <a target="_blank" href="https://en.wikipedia.org/wiki/Caesar_cipher"><i class="icon-link-ext"></i></a></h1>
-        <p class="sub-heading">A Simple <em>Single-Alphabet Substitution Cypher</em> used by Julius Caesar for messages to his military commanders, over 2000 years ago.</p>
-        <p class="sub-heading">It shifts or 'rotates' the alphabet, and so is sometimes called a Rotation Cypher (e.g. ROT-13 for a shift of 13). It is highly susceptable to letter frequency analysis and thus easily broken.</p>
+        <h1>The Pigpen Cypher <a target="_blank" href="https://en.wikipedia.org/wiki/Caesar_cipher"><i class="icon-link-ext"></i></a></h1>
+        <p class="sub-heading">A Simple <em>Geometric Substitution Cypher</em> used by the Freemasons for 200 years, but variations date back to the 11th Century or even earlier.</p>
+        <p class="sub-heading">It simply replaces each letter with a symbol based on a grid and dots. It is highly susceptable to letter frequency analysis and thus easily broken.</p>
 
         <section id="inputs">
             <h2>Inputs and Outputs</h2>
@@ -27,23 +27,23 @@
             </div>
 
             <div id="options" class="group">
-                <h3 class="key">Key (Shift)</h3>
-                <input type="number" id="key-value" class="key-value" value="0" min="0" max="25">
+                <h3 class="key">Key <span class="sub-heading">(note shape containing each letter)</span></h3>
+                <img src="images/pigpen.svg" alt="Pigpen cypher symbols">
             </div>
-        
+
             <div id="cyphertext" class="group">
                 <h3 class="cypher">Cypher Text</h3>
                 <input type="text" id="cyphertext-text" class="cyphertext-text">
             </div>
         </section>
 
-        <p class="instruction">Instructions: Select a Key (Shift) value and type into either the Plain Text or Cypher Text boxes to see the encryption in action.</p>
+        <p class="instruction">Instructions: Type into either the Plain Text or Cypher Text boxes to see the encryption in action.</p>
     </header>
 
     <main>
         <section id="encryption">
             <h2>Encryption System</h2>
-            
+
             <div id="crypt-plaintext" class="group block">
                 <h3>Plain Letter</h3>
                 <div id="plaintext-chars" class="grid"></div>
@@ -55,7 +55,7 @@
             </div>
 
             <div id="crypt-cyphertext" class="group block">
-                <h3 class="cypher">Cypher Letter</h3>
+                <h3 class="cypher">Cypher Symbol</h3>
                 <div id="cyphertext-chars" class="grid"></div>
             </div>
         </section>
@@ -69,7 +69,7 @@
             </div>
 
             <div id="cyphertext-freq" class="group">
-                <h3 class="cypher">Cypher Text Letter Frequency</h3>
+                <h3 class="cypher">Cypher Text Symbol Frequency</h3>
                 <div id="cyphertext-chart" class="chart"></div>
             </div>
         </section>

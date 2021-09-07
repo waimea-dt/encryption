@@ -1,31 +1,46 @@
+/*** FONTS ********************************************************/
+
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech&family=Share+Tech+Mono&display=swap');
+
+@font-face {
+    font-family: "PigPen";
+    src: url("../font/pigpen.otf") format("opentype");
+}
+
 
 /*** THEME ********************************************************/
 
 :root {
-    --back: #263238;
+    --back:      #263238;
     --back-high: #00000040;
     
-    --text: #eee;
+    --text:     #eee;
     --text-low: #999;
     --text-inv: #000;
     
     --accent: #29B6F6;
     
-    --border: #546E7A;
+    --border:      #546E7A;
     --border-dark: #263238;
 
-    --char-text: #000;
-    --char-back: #fff;
-    --char-high: #FFEB3B;
-    --char-first: #455A64c0;
+    --char-text:  #000;
+    --char-back:  #fff;
+    --char-high:  #FFEB3B;
+    --char-first: #29B6F6c0;
 
-    --cypher-back: #FFAB91;
-    --key-back: #A5D6A7;
-    --stream-back: #81C784;
+    --cypher-back:  #FFAB91;
+    --cypher-first: #FF5722c0;
 
-    --plain-bar: #fff;
+    --key-back:    #A5D6A7;
+    --stream-back: #66BB6A;
+    --key-back-alt:    #80DEEA;
+    --stream-back-alt: #26C6DA;
+
+    --plain-bar:  #B3E5FC;
     --cypher-bar: #FF5722;
+
+    --secret: #B71C1C;  
+    --active: #FFEB3B;   
 }
 
 
@@ -45,6 +60,7 @@ body {
     align-items: flex-start;
     gap: 1rem;
     max-width: 50rem;
+    min-height: 100vh;
     margin: 0 auto;
     padding: 1rem;
 }
@@ -64,6 +80,7 @@ h1 a:active, h1 a:hover { color: var(--text); }
 
 .sub-heading,
 .instruction {
+    display: block;
     font-family: 'Share Tech', sans-serif;
     font-size: 1rem;
     color: var(--text-low);
@@ -99,8 +116,9 @@ h3 {
     margin-right: 1.5rem;
 }
 
-.key    { color: var(--key-back); }
-.cypher { color: var(--cypher-back); }
+.key     { color: var(--key-back); }
+.key.alt { color: var(--key-back-alt); }
+.cypher  { color: var(--cypher-back); }
 
 .instruction {
     font-size: 0.9rem;
@@ -118,6 +136,17 @@ main {
     gap: 1rem;
 }
 
+body.home main {
+    align-items: center;
+}
+
+body.home main img {
+    width: 50%;
+    height: auto;
+}
+
+
+
 /*** HEADER ********************************************************/
 
 header {
@@ -132,19 +161,45 @@ header {
 
 /*** NAV OPTIONS ********************************************************/
 
+nav {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 nav ul {
     flex: 1;
     display: flex;
     gap: 1rem;
-    align-items: center;
+    align-items: stretch;
+}
+
+nav li {
+    flex: 1;
 }
 
 nav a {
     display: block;
     padding: 0.3rem 0.5rem;
-    background: var(--accent);
+    background: var(--border);
     color: var(--text);
     text-decoration: none;
+    border-radius: 0.3rem;
+    font-size: 1.2rem;
+    font-family: 'Share Tech', sans-serif;
+}
+
+nav a:hover,
+nav a:active {
+    background: var(--accent);
+    /* color: var(--accent); */
+}
+
+nav .note {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.8em;
 }
 
 
@@ -173,10 +228,12 @@ section .group:not(:last-of-type) {
     margin-bottom: 0.5rem;
 }
 
+body:is(.scheme-symmetric, .scheme-asymmetric) section .group:not(:last-of-type) {
+    margin-bottom: 1rem;
+}
+
 section .group h3 {
     font-size: 1rem;
-    /* color: var(--accent); */
-    /* white-space: nowrap; */
 }
 
 #crypt-mapping h3 {
@@ -187,10 +244,40 @@ section .group h3 {
     flex-direction: column-reverse;
 }
 
+#options img {
+    flex: 1;
+}
+
+#transmission {
+    display: none;
+}
+
+#transmission :is(.icon-right, .icon-left) { display: none; }
+#transmission :is(.icon-up, .icon-down)    { display: inline; }
+
+body:is(.scheme-symmetric, .scheme-asymmetric) #transmission {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 4rem;
+    color: var(--border);
+    text-align: center;
+}
+
+body:is(.scheme-symmetric, .scheme-asymmetric) #transmission.sending {
+    color: var(--char-high);
+}
+
+
 
 /*** INPUTS ********************************************************/
 
-input {
+input,
+textarea {
     font-size: inherit;
     font-family: inherit;
     padding: 0.3rem 0.5rem;
@@ -200,7 +287,17 @@ input {
     color: var(--text-inv);
 }
 
-input[type="text"] {
+body:is(.scheme-symmetric, .scheme-asymmetric) :is(input, textarea) {
+    text-transform: none;
+}
+
+input:focus,
+textarea:focus {
+    outline: 4px solid var(--accent);
+}
+
+input[type="text"],
+textarea {
     flex: 1;
 }
 
@@ -209,10 +306,83 @@ input[type="number"] {
     /* padding: 0.1rem 0.2rem; */
 }
 
-#plaintext-text { background: var(--char-back); }
-#cyphertext-text { background: var(--cypher-back); }
-#key-value, #key-text { background: var(--key-back); }
-#key-stream { background: var(--stream-back);  }
+.plaintext-text       { background: var(--char-back); }
+.cyphertext-text      { background: var(--cypher-back); }
+.key-value, .key-text { background: var(--key-back); }
+.key-value.alt        { background: var(--key-back-alt); }
+.key-stream           { background: var(--stream-back);  }
+.key-stream.alt       { background: var(--stream-back-alt);  }
+
+textarea:is(.key-value, .key-stream) { height: 3.5rem; word-break: break-all; }
+textarea.cyphertext-text             { height: 5.5rem; word-break: break-all; }
+textarea.plaintext-text              { height: 3.5rem; }
+
+:is(input, textarea):is(.sending, .receiving),
+:is(input, textarea).alt:is(.sending, .receiving) {
+    background: var(--active);
+}
+
+:is(.plaintext-text, .cyphertext-text, .key-value, .key-stream).using { 
+    background: var(--active); 
+}
+
+textarea:placeholder-shown,
+textarea.alt:placeholder-shown {
+    background: var(--back-high);
+    color: var(--border);
+}
+
+.privatekey {
+    position: relative;
+}
+
+.privatekey textarea {
+    border-color: var(--secret);
+}
+
+.privatekey::before {
+    content: '\e800';
+    position: absolute;
+    top: 0.3rem;
+    right: 5.5rem;
+    font-family: "fontello";
+    font-size: 3rem;
+    display: block;
+    width: 1em;
+    text-align: center;
+    line-height: 1em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--secret);
+    /* text-shadow: 0 0.1rem 0rem #00000040; */
+}
+
+
+/*** ACTION BUTTONS ********************************************************/
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+.actions button {
+    min-width: 5rem;
+    font-size: 1rem;
+    font-family: 'Share Tech', sans-serif;
+    background: var(--border);
+    color: var(--text);
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.2rem 0.5rem;
+    cursor: pointer;
+}
+
+.actions button:hover,
+.actions button:active {
+    background: var(--accent);
+}
 
 
 /*** CHARS ********************************************************/
@@ -251,8 +421,8 @@ input[type="number"] {
 .scheme-vignere #cyphertext-chars .char { background: var(--char-back); }
 
 #plaintext-chars .char.start { background: var(--char-back) linear-gradient( to right, var(--char-first) 0%, var(--char-back) 100% ); }
-#cyphertext-chars .char.start { background: var(--cypher-back) linear-gradient( to right, var(--char-first) 0%, var(--cypher-back) 100% ); }
-.scheme-vignere #cyphertext-chars .char.start { background: var(--char-back) linear-gradient( to right, var(--char-first) 0%, var(--char-back) 100% ); }
+#cyphertext-chars .char.start { background: var(--cypher-back) linear-gradient( to right, var(--cypher-first) 0%, var(--cypher-back) 100% ); }
+.scheme-vignere #cyphertext-chars .char.start { background: var(--char-back) linear-gradient( to right, var(--cypher-first) 0%, var(--char-back) 100% ); }
 
 #mapping span > i {
     display: none;
@@ -274,7 +444,8 @@ input[type="number"] {
     padding: 0.2rem 0;
 }
 
-.char.highlight,
+#plaintext-chars .char.highlight,
+#cyphertext-chars .char.highlight,
 .scheme-vignere #cyphertext-chars .row.highlight .char.highlight {
     background: var(--char-high);
 }
@@ -294,6 +465,22 @@ input[type="number"] {
 }
 
 
+.scheme-pigpen #plaintext-text {
+    letter-spacing: 0.3rem;
+}
+
+
+.scheme-pigpen #cyphertext-text,
+.scheme-pigpen #cyphertext-chars {
+    font-family: 'PigPen', monospace;
+}
+
+.scheme-pigpen .char {
+    font-size: 1rem;
+}
+
+
+
 /*** CHARTS ********************************************************/
 
 .chart {
@@ -308,9 +495,13 @@ input[type="number"] {
     gap: 0.3rem;
 }
 
+body:is(.scheme-symmetric, .scheme-asymmetric) .chart {
+    height: 6.5rem;
+}
+
 .chart > div {
     display: flex;
-    gap: 3px;
+    gap: 2px;
     align-items: flex-end;
 }
 
@@ -323,6 +514,10 @@ input[type="number"] {
 .chart label {
     font-size: 0.6rem;
     text-align: center;
+}
+
+body:is(.scheme-symmetric, .scheme-asymmetric) .chart label {
+    font-size: 0.5rem;
 }
 
 .chart .bar {
@@ -364,9 +559,18 @@ input[type="number"] {
         align-items: center;
     }
 
+    body:is(.scheme-symmetric, .scheme-asymmetric) section .group {
+        align-items: flex-start;
+    }
+
     section .group h3 {
         width: 5.5rem;
         text-align: right;
+    }
+
+    section img,
+    section input[type="text"] {
+        width: calc(100% - 6rem);
     }
 
     #crypt-mapping h3 {
@@ -382,12 +586,71 @@ input[type="number"] {
 @media screen and (min-width: 90rem) {
     body {
         max-width: unset;
-        /* width: 100%; */
         margin: 0 2rem;
+    }
+
+    body.home {
+        flex-direction: row;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    body:not(:is(.home, .scheme-symmetric, .scheme-asymmetric)) {
         flex-direction: row;
         gap: 1rem;
         align-items: flex-start;
     }
+
+    nav {
+        flex-direction: row;
+        flex: 1;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    body.home header { width: 20%; }
+    body.home main   { width: 15%; }
+    
+    body.home main img {
+        width: 100%;
+    }    
+
+    body:is(.scheme-symmetric, .scheme-asymmetric) header {
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+    
+    body:is(.scheme-symmetric, .scheme-asymmetric) header h1 {
+        min-width: 30%;
+    }
+    
+    body:is(.scheme-symmetric, .scheme-asymmetric) main {
+        margin-top: 1rem;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: flex-end;
+    }
+
+    body:is(.scheme-symmetric, .scheme-asymmetric) main section {
+        width: 45%;
+    }
+
+    body:is(.scheme-symmetric, .scheme-asymmetric) #user-A       { order: 1; flex: 1; }
+    body:is(.scheme-symmetric, .scheme-asymmetric) #user-B       { order: 3; }
+    body:is(.scheme-symmetric, .scheme-asymmetric) #user-E       { order: 5; }
+    body:is(.scheme-symmetric, .scheme-asymmetric) #transmission { order: 2; width: auto; align-self: center;}
+    body:is(.scheme-symmetric, .scheme-asymmetric) #charts       { order: 4; flex: 1; margin-right: 5rem; }
+
+    body:is(.scheme-symmetric, .scheme-asymmetric) #transmission {
+        flex-direction: column;
+    }
+
+    #transmission :is(.icon-right, .icon-left) { display: inline; }
+    #transmission :is(.icon-up, .icon-down)    { display: none; }
 
     #encryption {
         min-width: 40rem;

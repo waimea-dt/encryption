@@ -1,0 +1,157 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Asymmetric Public Key Encryption</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/fontello.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/tweetnacl-util@0.15.0/nacl-util.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl.js"></script>
+</head>
+
+<body onload="setup( ASYMMETRIC );">
+
+    <header id="mainheader">
+        <h1>Asymmetric Public-Key Encryption <a target="_blank" href="https://en.wikipedia.org/wiki/Public-key_cryptography"><i class="icon-link-ext"></i></a></h1>
+        <p class="sub-heading">First developed in the mid-1970s, 'Asymmetric' or 'Public-Key' encryption overcame the Key Distribution Problem through the use of keys that could be shared freely (hence 'public key').</p>
+        <p class="sub-heading">Each user has a <em>'Key Pair'</em>, two mathematically-related keys. Their 'public' key is widely shared with others who can use it to encrypt a message. The message can only be decrypted with the 'private' key (which is never shared).</p>
+    </header>
+
+    <main>
+        <section id="user-A" class="user">
+            <h2>Sender (Alice)</h2>
+
+            <div class="group privatekey">
+                <h3 class="key alt">Private Key</h3>
+                <textarea id="key-A-private" class="key-stream alt" placeholder=" " disabled></textarea>
+
+                <div class="actions">
+                    <button id="key-gen-A">Generate</button>
+                </div>
+            </div>
+
+            <div class="group">
+                <h3 class="key alt">Public Key</h3>
+                <textarea id="key-A-public" class="key-value alt" placeholder=" " disabled></textarea>
+
+                <div class="actions">
+                    <button id="key-send-AtoB">Send</button>
+                </div>
+            </div>
+
+            <div class="group">
+                <h3 class="key">Bob's Public Key</h3>
+                <textarea id="key-A" class="key-value" placeholder=" " disabled></textarea>
+            </div>
+
+            <div class="group">
+                <h3>Plaintext for Bob</h3>
+                <textarea id="plaintext-text-A" class="plaintext-text"></textarea>
+
+                <div class="actions">
+                    <button id="plaintext-encrypt">Encrypt</button>
+                </div>
+            </div>
+
+            <div class="group">
+                <h3 class="cypher">Cyphertext for Bob</h3>
+                <textarea id="cyphertext-text-A" class="cyphertext-text" placeholder=" " disabled></textarea>
+
+                <div class="actions">
+                    <button id="cyphertext-send">Send</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="transmission">
+            <div id="transmit-atob">
+                <i class="icon-right"></i>
+                <i class="icon-down"></i>
+            </div>
+            <div id="transmit-btoa">
+                <i class="icon-left"></i>
+                <i class="icon-up"></i>
+            </div>
+        </section>
+
+        <section id="user-B" class="user">
+            <h2>Recipient (Bob)</h2>
+
+            <div class="group privatekey">
+                <h3 class="key">Private Key</h3>
+                <textarea id="key-B-private" class="key-stream" placeholder=" " disabled></textarea>
+
+                <div class="actions">
+                    <button id="key-gen-B">Generate</button>
+                </div>
+            </div>
+
+            <div class="group">
+                <h3 class="key">Public Key</h3>
+                <textarea id="key-B-public" class="key-value" placeholder=" " disabled></textarea>
+
+                <div class="actions">
+                    <button id="key-send-BtoA">Send</button>
+                </div>
+            </div>
+
+            <div class="group">
+                <h3 class="key alt">Alice's Public Key</h3>
+                <textarea id="key-B" class="key-value alt" placeholder=" " disabled></textarea>
+            </div>
+
+            <div class="group">
+                <h3 class="cypher">Cyphertext from Alice</h3>
+                <textarea id="cyphertext-text-B" class="cyphertext-text" placeholder=" " disabled></textarea>
+
+                <div class="actions">
+                    <button id="cyphertext-decrypt-B">Decrypt</button>
+                </div>
+            </div>
+
+            <div class="group">
+                <h3>Plaintext from Alice</h3>
+                <textarea id="plaintext-text-B" class="plaintext-text" placeholder=" " disabled></textarea>
+            </div>
+        </section>
+
+        <section id="user-E" class="user">
+            <h2>Eavesdropper (Eve)</h2>
+
+            <div class="group">
+                <h3 class="key alt">Alice's Public Key</h3>
+                <textarea id="key-EA" class="key-value alt" placeholder=" " placeholder=" " disabled></textarea>
+            </div>
+
+            <div class="group">
+                <h3 class="key">Bob's Public Key</h3>
+                <textarea id="key-EB" class="key-value" placeholder=" " placeholder=" " disabled></textarea>
+            </div>
+
+            <div class="group">
+                <h3 class="cypher">Cyphertext from Alice</h3>
+                <textarea id="cyphertext-text-E" class="cyphertext-text" placeholder=" " disabled></textarea>
+
+                <div class="actions">
+                    <button id="cyphertext-decrypt-E">Decrypt</button>
+                </div>
+            </div>
+
+            <div id="plaintext-E" class="group">
+                <h3>Plaintext from Alice</h3>
+                <textarea id="plaintext-text-E" class="plaintext-text" placeholder=" " disabled></textarea>
+            </div>
+        </section>
+
+        <script src="js/crypt-util.js"></script>
+        <script src="js/crypt-modern.js"></script>
+    </main>
+
+</body>
+
+</html>

@@ -23,26 +23,26 @@
 
             <div id="plaintext" class="group">
                 <h3>Plain Text</h3>
-                <input type="text" id="plaintext-text">
+                <input type="text" id="plaintext-text" class="plaintext-text">
             </div>
 
             <div id="options" class="group">
                 <h3 class="key">Key Phrase</h3>
-                <input type="text" id="key-text">
+                <input type="text" id="key-text" class="key-text">
             </div>
 
             <div id="options" class="group">
                 <h3 class="key">Key Stream</h3>
-                <input type="text" id="key-stream" disabled>
+                <input type="text" id="key-stream" class="key-stream" disabled>
             </div>
 
             <div id="cyphertext" class="group">
                 <h3 class="cypher">Cypher Text</h3>
-                <input type="text" id="cyphertext-text">
+                <input type="text" id="cyphertext-text" class="cyphertext-text">
             </div>
         </section>
 
-        <section id="inputs">
+        <section id="charts">
             <h2>Frequency Analysis</h2>
 
             <div id="plaintext-freq" class="group">
@@ -78,9 +78,10 @@
                 <div id="cyphertext-chars"></div>
             </div>
         </section>
-    </main>
 
-    <script src="js/crypt.js"></script>
+        <script src="js/crypt-util.js"></script>
+        <script src="js/crypt-simple.js"></script>
+    </main>
 
 </body>
 
