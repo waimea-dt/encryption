@@ -40,7 +40,8 @@
     --cypher-bar: #FF5722;
 
     --secret: #B71C1C;  
-    --active: #FFEB3B;   
+    --active: #FFEB3B;  
+    --border-active: #F57F17; 
 }
 
 
@@ -281,7 +282,7 @@ textarea {
     font-size: inherit;
     font-family: inherit;
     padding: 0.3rem 0.5rem;
-    border: 2px solid var(--border-dark);
+    border: 4px solid var(--border);
     border-radius: 0.3rem;
     text-transform: uppercase;
     color: var(--text-inv);
@@ -320,31 +321,35 @@ textarea.plaintext-text              { height: 3.5rem; }
 :is(input, textarea):is(.sending, .receiving),
 :is(input, textarea).alt:is(.sending, .receiving) {
     background: var(--active);
+    border-color: var(--border-active);
 }
 
 :is(.plaintext-text, .cyphertext-text, .key-value, .key-stream).using { 
     background: var(--active); 
+    border-color: var(--border-active);
 }
 
 textarea:placeholder-shown,
 textarea.alt:placeholder-shown {
     background: var(--back-high);
     color: var(--border);
+    border-color: var(--border-dark);
 }
 
 .privatekey {
     position: relative;
 }
 
-.privatekey textarea {
+.privatekey textarea,
+.privatekey textarea.alt {
     border-color: var(--secret);
 }
 
 .privatekey::before {
     content: '\e800';
     position: absolute;
-    top: 0.3rem;
-    right: 5.5rem;
+    top: 2.2rem;
+    right: 0.3rem;
     font-family: "fontello";
     font-size: 3rem;
     display: block;
@@ -580,6 +585,12 @@ body:is(.scheme-symmetric, .scheme-asymmetric) .chart label {
     #crypt-cyphertext {
         flex-direction: row;
     }
+
+    .privatekey::before {
+        top: 0.3rem;
+        right: 5.7rem;
+    }
+    
 }
 
 
