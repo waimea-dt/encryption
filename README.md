@@ -20,5 +20,5 @@ The demo show the key distribution, and how this can be problematic for symmetri
 
 ## Demo
 
-https://waimea-cpy.github.io/Encryption/
+https://waimea-dt.github.io/encryption/
 
